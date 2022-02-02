@@ -6,14 +6,14 @@ tableextension 50101 ItemEx extends Item
         field(50101; "PS%"; Decimal)
         {
             DataClassification = ToBeClassified;
-            Caption = 'PS%';
+            Caption = 'Planned Scrap %';
 
         }
 
         field(50102; "MG%"; Decimal)
         {
             DataClassification = ToBeClassified;
-            Caption = 'MG%';
+            Caption = 'Moisture Gain %';
         }
     }
 
