@@ -1,4 +1,4 @@
-pageextension 50100 ProductionBOMLineEx extends "Production BOM Lines"
+pageextension 50102 ProductionBOMLineEx extends "Production BOM Lines"
 {
     layout
     {
@@ -9,12 +9,15 @@ pageextension 50100 ProductionBOMLineEx extends "Production BOM Lines"
             field("ML%"; rec."ML%")
             {
                 ApplicationArea = All;
+                Editable = false;
+
 
             }
 
             field("lbs. After ML"; rec."lbs. After ML")
             {
                 ApplicationArea = All;
+                Editable = false;
 
             }
 
@@ -30,4 +33,7 @@ pageextension 50100 ProductionBOMLineEx extends "Production BOM Lines"
 
     var
         myInt: Integer;
+
+
+
 }

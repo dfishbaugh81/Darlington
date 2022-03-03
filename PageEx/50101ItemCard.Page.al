@@ -1,4 +1,4 @@
-pageextension 50101 ItemCardEx extends "Item Card"
+pageextension 50103 ItemCardEx extends "Item Card"
 {
     layout
     {
@@ -11,37 +11,30 @@ pageextension 50101 ItemCardEx extends "Item Card"
             begin
 
                 lockFields();
-
+                GetMLWeightFromBOM();
 
             end;
         }
         // Add changes to page layout here
         addafter("Overhead Rate")
         {
+
+
+            field("ML%"; rec."ML%")
+            {
+                ApplicationArea = All;
+                Editable = isVisible_ML;
+
+
+
+            }
+
+
             field("MG%"; rec."MG%")
             {
                 ApplicationArea = All;
 
-                //Visible = isVisible;
                 Editable = isVisible;
-
-                trigger OnValidate()
-                var
-
-                    lotSizeCalc: Codeunit LotSizeCalculation;
-
-                begin
-
-                    if rec."MG%" <> 0 then begin
-                        lotSizeCalc.CalculateLotSize(Rec);
-
-                    end
-                    else
-                        rec."Lot Size" := 0;
-
-
-
-                end;
 
 
             }
@@ -49,26 +42,20 @@ pageextension 50101 ItemCardEx extends "Item Card"
             field("PS%"; rec."PS%")
             {
                 ApplicationArea = All;
-                //Visible = isVisible;
+
                 Editable = isVisible;
 
-                trigger OnValidate()
-                var
 
-                    lotSizeCalc: Codeunit LotSizeCalculation;
-
-                begin
-
-                    if rec."PS%" <> 0 then begin
-                        lotSizeCalc.CalculateLotSize(Rec);
-                    end
-
-                    else
-                        rec."Lot Size" := 0;
-
-                end;
 
             }
+
+            field(MLWeight; rec.MLWeight)
+            {
+                ApplicationArea = All;
+                Editable = false;
+
+            }
+
         }
 
 
@@ -84,10 +71,13 @@ pageextension 50101 ItemCardEx extends "Item Card"
         [InDataSet]
         isVisible: Boolean;
 
+        [InDataSet]
+        isVisible_ML: Boolean;
+
 
     trigger OnOpenPage()
     var
-        myInt: Integer;
+
     begin
 
         lockFields();
@@ -98,21 +88,53 @@ pageextension 50101 ItemCardEx extends "Item Card"
 
     local procedure lockFields(): Boolean
     var
-        myInt: Integer;
+
     begin
 
         if rec."Production BOM No." <> '' then begin
             isVisible := true;
+            isVisible_ML := false;
             exit(isVisible);
+            exit(isVisible_ML);
         end
 
         else
             if rec."Production BOM No." = '' then begin
 
                 isVisible := false;
+                isVisible_ML := true;
                 exit(isVisible);
+                exit(isVisible_ML);
             end;
 
+    end;
+
+    //calculates the weight from the BOM when BOm in attached to item.
+    local procedure GetMLWeightFromBOM()
+    var
+        ProdBOM: Record "Production BOM Line";
+        sumLbsAfterML: Decimal;
+    begin
+
+        if rec."Production BOM No." <> '' then begin
+
+
+            ProdBOM.SetFilter("Production BOM No.", '=%1', rec."Production BOM No.");
+
+            if ProdBOM.FindSet then begin
+
+                repeat
+
+                    sumLbsAfterML := ProdBOM."lbs. After ML" + sumLbsAfterML;
+
+                until ProdBOM.Next = 0;
+
+                rec.MLWeight := sumLbsAfterML;
+                rec.Modify;
+            end;
+
+
+        end;
 
     end;
 
