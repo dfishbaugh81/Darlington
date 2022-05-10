@@ -165,11 +165,15 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
     end;
 
 
-    trigger OnDelete()
+    trigger OnAfterDelete()
     var
         myInt: Integer;
     begin
-        calculateLotSize();
+
+
+        OnDeleteBomLine();
+
+
 
     end;
 
@@ -231,6 +235,65 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
             end;
 
         end;
+    end;
+
+
+    local procedure OnDeleteBomLine()
+    var
+        ProdBomLine: Record "Production BOM Line";
+        TotalSumLbsAfterML: Decimal;
+        FinishedGood: record Item;
+        itemunitOfMeassure: Record "Item Unit of Measure";
+        batchWeight: decimal;
+        Yield: Decimal;
+
+    begin
+
+        ProdBomLine.SetFilter("Production BOM No.", '=%1', rec."Production BOM No.");
+
+        if ProdBomLine.FindSet then begin
+
+
+            repeat
+
+                TotalSumLbsAfterML := ProdBomLine."lbs. After ML" + TotalSumLbsAfterML;
+
+            until ProdBomLine.Next = 0;
+
+            FinishedGood.SetFilter("Production BOM No.", '=%1', rec."Production BOM No.");
+
+            if FinishedGood.FindSet then begin
+
+                repeat
+
+                    FinishedGood.MLWeight := TotalSumLbsAfterML;
+                    FinishedGood.Modify;
+
+                    batchWeight := TotalSumLbsAfterML + (TotalSumLbsAfterML * (FinishedGood."MG%" / 100));
+
+                    itemunitOfMeassure.SetFilter(Code, '=%1', FinishedGood."Purch. Unit of Measure");
+
+                    if itemunitOfMeassure.FindSet then begin
+
+                        itemunitOfMeassure.SetFilter("Item No.", '=%1', FinishedGood."No.");
+
+                        if itemunitOfMeassure.FindSet then begin
+
+
+                            Yield := batchWeight / itemunitOfMeassure.Weight;
+                            FinishedGood."Lot Size" := Yield + ((FinishedGood."PS%" / 100) * Yield);
+
+                            FinishedGood.Modify;
+                        end;
+
+                    end;
+
+                until FinishedGood.next = 0;
+            end;
+
+
+        end;
+
     end;
 
 
