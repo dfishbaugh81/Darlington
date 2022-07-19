@@ -101,7 +101,13 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
 
             if ItemRec."Item Category Code" = 'PRE-BATCH' then begin
 
-                rec."lbs. After ML" := ItemRec.MLWeight;
+                if rec.Type = type::"Production BOM" then begin
+
+                    rec."lbs. After ML" := 0;
+
+                end
+                else
+                    rec."lbs. After ML" := ItemRec.MLWeight;
                 rec.Modify;
 
             end
@@ -135,32 +141,44 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
         ItemRec: Record item;
     begin
 
-        ItemRec.SetFilter("No.", '=%1', rec."No.");
+        if rec.Type = Type::"Production BOM" then begin
 
-        if ItemRec.FindSet then begin
+            rec."lbs. After ML" := 0;
+            rec.Modify;
+        end
+        else begin
 
-            if ItemRec."Item Category Code" = 'PRE-BATCH' then begin
 
-                rec."lbs. After ML" := ItemRec.MLWeight;
-                //rec.Modify;
+            ItemRec.SetFilter("No.", '=%1', rec."No.");
 
-            end
+            if ItemRec.FindSet then begin
 
-            else begin
+                if ItemRec."Item Category Code" = 'PRE-BATCH' then begin
 
-                rec."ML%" := ItemRec."ML%";
-                rec.Modify;
+                    rec."lbs. After ML" := ItemRec.MLWeight;
+                    //rec.Modify;
+
+                end
+
+                else begin
+
+                    rec."ML%" := ItemRec."ML%";
+                    rec.Modify;
+
+                end;
 
             end;
 
+            rec."lbs. After ML" := rec."Quantity per" - (rec."Quantity per" * (rec."ML%" / 100));
+
+            rec.Modify;
+
+            //SumLbsAfterML();
+            calculateLotSize();
+
         end;
 
-        rec."lbs. After ML" := rec."Quantity per" - (rec."Quantity per" * (rec."ML%" / 100));
 
-        rec.Modify;
-
-        //SumLbsAfterML();
-        calculateLotSize();
 
     end;
 
@@ -222,9 +240,10 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
 
                         if itemunitOfMeassure.FindSet then begin
 
-
+                            //Y =Z/W
                             Yield := batchWeight / itemunitOfMeassure.Weight;
-                            FinishedGood."Lot Size" := Yield + ((FinishedGood."PS%" / 100) * Yield);
+                            //F = Y-(S*Y)
+                            FinishedGood."Lot Size" := Yield - ((FinishedGood."PS%" / 100) * Yield);
 
                             FinishedGood.Modify;
                         end;
