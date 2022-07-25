@@ -1,6 +1,28 @@
 codeunit 50103 LotSize
 {
 
+
+    trigger OnRun()
+    var
+        ItemRec: Record Item;
+    begin
+
+        repeat
+
+
+
+            if ItemRec."Production BOM No." <> '' then begin
+                ItemRec.Validate("MG%", ItemRec."MG%");
+                ItemRec.Modify;
+
+            end;
+
+
+        until ItemRec.Next = 0;
+
+
+    end;
+
     procedure setMlOnBom(RawItem: Record item)
     var
         prodBOMItem: Record "Production BOM Line";
@@ -104,7 +126,7 @@ codeunit 50103 LotSize
                                 Yield := batchWeight / itemunitOfMeassure.Weight;
                             end;
 
-                            FinishedGood."Lot Size" := Yield + ((FinishedGood."PS%" / 100) * Yield);
+                            FinishedGood."Lot Size" := Yield - ((FinishedGood."PS%" / 100) * Yield);
 
                             FinishedGood.Modify;
                         end;

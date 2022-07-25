@@ -115,7 +115,7 @@ tableextension 50103 ItemEx extends Item
     var
     begin
 
-        rec."Lot Size" := calculateYield() + ((rec."PS%" / 100) * calculateYield());
+        rec."Lot Size" := calculateYield() - ((rec."PS%" / 100) * calculateYield());
         rec.Modify;
 
     end;

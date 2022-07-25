@@ -300,7 +300,7 @@ tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
 
 
                             Yield := batchWeight / itemunitOfMeassure.Weight;
-                            FinishedGood."Lot Size" := Yield + ((FinishedGood."PS%" / 100) * Yield);
+                            FinishedGood."Lot Size" := Yield - ((FinishedGood."PS%" / 100) * Yield);
 
                             FinishedGood.Modify;
                         end;
