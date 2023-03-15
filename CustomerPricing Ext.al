@@ -82,7 +82,7 @@ pageextension 50130 PostedSalesInvoice extends "Posted Sales Invoice"
     }
 }
 
-pageextension 50131 PostedSalesShipment extends "Posted Sales Shipment"
+pageextension 50141 PostedSalesShipment extends "Posted Sales Shipment"
 {
     layout
     {
@@ -302,14 +302,14 @@ pageextension 50117 PageOrderHeaderExt extends "Purchase Order"
                         PurchLine.SetRange("Document No.", Rec."No.");
                         PurchLine.SetRange(Type, PurchLine.Type::Item);
                         if PurchLine.FindFirst() then begin
-                            LotNoTab.Reset;
-                            LotNoTab.SetRange("Dcc SO Number", PurchLine."Document No.");
-                            LotNoTab.SetRange(ItemNo, PurchLine."No.");
-                            LotNoTab.SetRange(RecNo, PurchLine."Line No.");
-                            if LotNoTab.Find() then
-                                REPORT.RunModal(REPORT::BarCodeTrackingReport, true, false, purchHead)
-                            else
-                                REPORT.RunModal(REPORT::BarCodeTrackingReport1, true, false, purchHead);
+                            //otNoTab.Reset;
+                            //LotNoTab.SetRange("Dcc SO Number", PurchLine."Document No.");
+                            //LotNoTab.SetRange(ItemNo, PurchLine."No.");
+                            //LotNoTab.SetRange(RecNo, PurchLine."Line No.");
+                            //if LotNoTab.Find() then
+                            REPORT.RunModal(REPORT::BarCodeTrackingReport, true, false, purchHead)
+                            //else
+                            //REPORT.RunModal(REPORT::BarCodeTrackingReport1, true, false, purchHead);
                         end;
 
                     end;
@@ -322,7 +322,7 @@ pageextension 50117 PageOrderHeaderExt extends "Purchase Order"
     var
         purchLine: Record "Purchase Line";
         purchHead: Record "Purchase Header";
-        LotNoTab: Record LotNoTable;
+    //LotNoTab: Record LotNoTable;
 }
 
 pageextension 50113 ItemListExt extends "Item List"
