@@ -1,4 +1,4 @@
-report 50110 BarCodeTrackingReport
+report 50110 "BarCodeTrackingReport"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './BarcodeTrackingReportPo.rdl';
