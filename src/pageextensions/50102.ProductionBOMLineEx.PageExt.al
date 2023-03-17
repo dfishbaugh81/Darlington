@@ -1,4 +1,4 @@
-pageextension 50102 ProductionBOMLineEx extends "Production BOM Lines"
+pageextension 50102 "ProductionBOMLineEx" extends "Production BOM Lines"
 {
     layout
     {

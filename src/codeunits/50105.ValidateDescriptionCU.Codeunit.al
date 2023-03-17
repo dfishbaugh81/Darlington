@@ -1,4 +1,4 @@
-codeunit 50105 ValidateDescriptionCU
+codeunit 50105 "ValidateDescriptionCU"
 {
     trigger OnRun()
     begin

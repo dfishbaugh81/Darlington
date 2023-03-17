@@ -1,4 +1,4 @@
-codeunit 50103 LotSize
+codeunit 50103 "LotSize"
 {
 
 

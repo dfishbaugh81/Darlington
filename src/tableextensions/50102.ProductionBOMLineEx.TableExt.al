@@ -1,4 +1,4 @@
-tableextension 50102 ProductionBOMLineEx extends "Production BOM Line"
+tableextension 50102 "ProductionBOMLineEx" extends "Production BOM Line"
 {
     fields
     {
