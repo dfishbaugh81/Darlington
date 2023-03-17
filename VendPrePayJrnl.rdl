@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="Gen__Journal_Batch_Journal_Template_Name">
+          <DataField>Gen__Journal_Batch_Journal_Template_Name</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Batch_Name">
+          <DataField>Gen__Journal_Batch_Name</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_">
+          <DataField>FORMAT_TODAY_0_4_</DataField>
+        </Field>
+        <Field Name="CompanyInformation_Name">
+          <DataField>CompanyInformation_Name</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Batch___Journal_Template_Name_">
+          <DataField>Gen__Journal_Batch___Journal_Template_Name_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Batch__Name">
+          <DataField>Gen__Journal_Batch__Name</DataField>
+        </Field>
+        <Field Name="TIME">
+          <DataField>TIME</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__TABLECAPTION__________GenJnlLineFilter">
+          <DataField>Gen__Journal_Line__TABLECAPTION__________GenJnlLineFilter</DataField>
+        </Field>
+        <Field Name="GenJnlLineFilter">
+          <DataField>GenJnlLineFilter</DataField>
+        </Field>
+        <Field Name="USE001Err">
+          <DataField>USE001Err</DataField>
+        </Field>
+        <Field Name="GenJnlTemplate__Force_Doc__Balance_">
+          <DataField>GenJnlTemplate__Force_Doc__Balance_</DataField>
+        </Field>
+        <Field Name="Integer_Number">
+          <DataField>Integer_Number</DataField>
+        </Field>
+        <Field Name="Payment_Journal___Pre_Check_TestCaption">
+          <DataField>Payment_Journal___Pre_Check_TestCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Batch___Journal_Template_Name_Caption">
+          <DataField>Gen__Journal_Batch___Journal_Template_Name_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Batch__NameCaption">
+          <DataField>Gen__Journal_Batch__NameCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Posting_Date_Caption">
+          <DataField>Gen__Journal_Line__Posting_Date_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Document_Type_Caption">
+          <DataField>Gen__Journal_Line__Document_Type_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Document_No__Caption">
+          <DataField>Gen__Journal_Line__Document_No__Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Account_Type_Caption">
+          <DataField>Gen__Journal_Line__Account_Type_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Account_No__Caption">
+          <DataField>Gen__Journal_Line__Account_No__Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_DescriptionCaption">
+          <DataField>Gen__Journal_Line_DescriptionCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_AmountCaption">
+          <DataField>Gen__Journal_Line_AmountCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bal__Account_No__Caption">
+          <DataField>Gen__Journal_Line__Bal__Account_No__Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bal__Account_Type_Caption">
+          <DataField>Gen__Journal_Line__Bal__Account_Type_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bank_Payment_Type_Caption">
+          <DataField>Gen__Journal_Line__Bank_Payment_Type_Caption</DataField>
+        </Field>
+        <Field Name="DocumentCaption">
+          <DataField>DocumentCaption</DataField>
+        </Field>
+        <Field Name="AccountCaption">
+          <DataField>AccountCaption</DataField>
+        </Field>
+        <Field Name="Bal__AccountCaption">
+          <DataField>Bal__AccountCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Posting_Date_">
+          <DataField>Gen__Journal_Line__Posting_Date_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Document_Type_">
+          <DataField>Gen__Journal_Line__Document_Type_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Document_No__">
+          <DataField>Gen__Journal_Line__Document_No__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bank_Payment_Type_">
+          <DataField>Gen__Journal_Line__Bank_Payment_Type_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Account_Type_">
+          <DataField>Gen__Journal_Line__Account_Type_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Account_No__">
+          <DataField>Gen__Journal_Line__Account_No__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Description">
+          <DataField>Gen__Journal_Line_Description</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bal__Account_Type_">
+          <DataField>Gen__Journal_Line__Bal__Account_Type_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Bal__Account_No__">
+          <DataField>Gen__Journal_Line__Bal__Account_No__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Applies_to_Doc__Type_">
+          <DataField>Gen__Journal_Line__Applies_to_Doc__Type_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Applies_to_Doc__No__">
+          <DataField>Gen__Journal_Line__Applies_to_Doc__No__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Due_Date_">
+          <DataField>Gen__Journal_Line__Due_Date_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Description_Control3015">
+          <DataField>Gen__Journal_Line_Description_Control3015</DataField>
+        </Field>
+        <Field Name="AmountDue">
+          <DataField>AmountDue</DataField>
+        </Field>
+        <Field Name="AmountDueFormat">
+          <DataField>AmountDueFormat</DataField>
+        </Field>
+        <Field Name="AmountDiscounted">
+          <DataField>AmountDiscounted</DataField>
+        </Field>
+        <Field Name="AmountDiscountedFormat">
+          <DataField>AmountDiscountedFormat</DataField>
+        </Field>
+        <Field Name="AmountPaid___AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance">
+          <DataField>AmountPaid___AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance</DataField>
+        </Field>
+        <Field Name="AmountPaid___AmountDiscounted___AmountPmtDiscTolerance___AmountPmtToleranceFormat">
+          <DataField>AmountPaid___AmountDiscounted___AmountPmtDiscTolerance___AmountPmtToleranceFormat</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Currency_Code_">
+          <DataField>Gen__Journal_Line__Currency_Code_</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscTolerance">
+          <DataField>AmountPmtDiscTolerance</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscToleranceFormat">
+          <DataField>AmountPmtDiscToleranceFormat</DataField>
+        </Field>
+        <Field Name="AmountPmtTolerance">
+          <DataField>AmountPmtTolerance</DataField>
+        </Field>
+        <Field Name="AmountPmtToleranceFormat">
+          <DataField>AmountPmtToleranceFormat</DataField>
+        </Field>
+        <Field Name="ShowApplyToOutput">
+          <DataField>ShowApplyToOutput</DataField>
+        </Field>
+        <Field Name="TotalAmount">
+          <DataField>TotalAmount</DataField>
+        </Field>
+        <Field Name="TotalAmountFormat">
+          <DataField>TotalAmountFormat</DataField>
+        </Field>
+        <Field Name="Amount___TotalAmountDiscounted___TotalAmountPmtDiscTolerance___TotalAmountPmtTolerance___AmountApplied">
+          <DataField>Amount___TotalAmountDiscounted___TotalAmountPmtDiscTolerance___TotalAmountPmtTolerance___AmountApplied</DataField>
+        </Field>
+        <Field Name="Amount___TotalAmountDiscounted___TotalAmountPmtDiscTolerance___TotalAmountPmtTolerance___AmountAppliedFormat">
+          <DataField>Amount___TotalAmountDiscounted___TotalAmountPmtDiscTolerance___TotalAmountPmtTolerance___AmountAppliedFormat</DataField>
+        </Field>
+        <Field Name="AmountApplied">
+          <DataField>AmountApplied</DataField>
+        </Field>
+        <Field Name="AmountAppliedFormat">
+          <DataField>AmountAppliedFormat</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Amount">
+          <DataField>Gen__Journal_Line_Amount</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_AmountFormat">
+          <DataField>Gen__Journal_Line_AmountFormat</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Currency_Code__Control35">
+          <DataField>Gen__Journal_Line__Currency_Code__Control35</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_USE003Err__Document_Type___Document_No___">
+          <DataField>STRSUBSTNO_USE003Err__Document_Type___Document_No___</DataField>
+        </Field>
+        <Field Name="TotalAmountDiscounted">
+          <DataField>TotalAmountDiscounted</DataField>
+        </Field>
+        <Field Name="TotalAmountDiscountedFormat">
+          <DataField>TotalAmountDiscountedFormat</DataField>
+        </Field>
+        <Field Name="TotalAmountPmtDiscTolerance">
+          <DataField>TotalAmountPmtDiscTolerance</DataField>
+        </Field>
+        <Field Name="TotalAmountPmtDiscToleranceFormat">
+          <DataField>TotalAmountPmtDiscToleranceFormat</DataField>
+        </Field>
+        <Field Name="TotalAmountPmtTolerance">
+          <DataField>TotalAmountPmtTolerance</DataField>
+        </Field>
+        <Field Name="TotalAmountPmtToleranceFormat">
+          <DataField>TotalAmountPmtToleranceFormat</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Amount__LCY__">
+          <DataField>Gen__Journal_Line__Amount__LCY__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Amount__LCY__Format">
+          <DataField>Gen__Journal_Line__Amount__LCY__Format</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Balance__LCY__">
+          <DataField>Gen__Journal_Line__Balance__LCY__</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Balance__LCY__Format">
+          <DataField>Gen__Journal_Line__Balance__LCY__Format</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_USE002Err__Journal_Template_Name___Journal_Batch_Name__">
+          <DataField>STRSUBSTNO_USE002Err__Journal_Template_Name___Journal_Batch_Name__</DataField>
+        </Field>
+        <Field Name="AmountLcy">
+          <DataField>AmountLcy</DataField>
+        </Field>
+        <Field Name="AmountLcyFormat">
+          <DataField>AmountLcyFormat</DataField>
+        </Field>
+        <Field Name="AmountBalLcy">
+          <DataField>AmountBalLcy</DataField>
+        </Field>
+        <Field Name="AmountBalLcyFormat">
+          <DataField>AmountBalLcyFormat</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Journal_Template_Name">
+          <DataField>Gen__Journal_Line_Journal_Template_Name</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Journal_Batch_Name">
+          <DataField>Gen__Journal_Line_Journal_Batch_Name</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Line_No_">
+          <DataField>Gen__Journal_Line_Line_No_</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line_Applies_to_ID">
+          <DataField>Gen__Journal_Line_Applies_to_ID</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Applies_to_Doc__Type_Caption">
+          <DataField>Gen__Journal_Line__Applies_to_Doc__Type_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Applies_to_Doc__No__Caption">
+          <DataField>Gen__Journal_Line__Applies_to_Doc__No__Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Due_Date_Caption">
+          <DataField>Gen__Journal_Line__Due_Date_Caption</DataField>
+        </Field>
+        <Field Name="Description___Caption">
+          <DataField>Description___Caption</DataField>
+        </Field>
+        <Field Name="AmountDueCaption">
+          <DataField>AmountDueCaption</DataField>
+        </Field>
+        <Field Name="AmountDiscountedCaption">
+          <DataField>AmountDiscountedCaption</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscToleranceCaption">
+          <DataField>AmountPmtDiscToleranceCaption</DataField>
+        </Field>
+        <Field Name="AmountPmtToleranceCaption">
+          <DataField>AmountPmtToleranceCaption</DataField>
+        </Field>
+        <Field Name="Unapplied_AmountsCaption">
+          <DataField>Unapplied_AmountsCaption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Amount__LCY__Caption">
+          <DataField>Gen__Journal_Line__Amount__LCY__Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__Balance__LCY__Caption">
+          <DataField>Gen__Journal_Line__Balance__LCY__Caption</DataField>
+        </Field>
+        <Field Name="Cust_Vend_Name">
+          <DataField>Cust_Vend_Name</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Document_Type_">
+          <DataField>Cust__Ledger_Entry__Document_Type_</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Document_No__">
+          <DataField>Cust__Ledger_Entry__Document_No__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry_Description">
+          <DataField>Cust__Ledger_Entry_Description</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Due_Date_">
+          <DataField>Cust__Ledger_Entry__Due_Date_</DataField>
+        </Field>
+        <Field Name="Remaining_Amount_">
+          <DataField>Remaining_Amount_</DataField>
+        </Field>
+        <Field Name="Remaining_Amount_Format">
+          <DataField>Remaining_Amount_Format</DataField>
+        </Field>
+        <Field Name="AmountDiscounted_Control3033">
+          <DataField>AmountDiscounted_Control3033</DataField>
+        </Field>
+        <Field Name="AmountDiscounted_Control3033Format">
+          <DataField>AmountDiscounted_Control3033Format</DataField>
+        </Field>
+        <Field Name="Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance_">
+          <DataField>Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance_</DataField>
+        </Field>
+        <Field Name="Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance_Format">
+          <DataField>Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance_Format</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Currency_Code_">
+          <DataField>Cust__Ledger_Entry__Currency_Code_</DataField>
+        </Field>
+        <Field Name="AmountPmtTolerance_Control3049">
+          <DataField>AmountPmtTolerance_Control3049</DataField>
+        </Field>
+        <Field Name="AmountPmtTolerance_Control3049Format">
+          <DataField>AmountPmtTolerance_Control3049Format</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscTolerance_Control3050">
+          <DataField>AmountPmtDiscTolerance_Control3050</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscTolerance_Control3050Format">
+          <DataField>AmountPmtDiscTolerance_Control3050Format</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry_Entry_No_">
+          <DataField>Cust__Ledger_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry_Customer_No_">
+          <DataField>Cust__Ledger_Entry_Customer_No_</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry_Applies_to_ID">
+          <DataField>Cust__Ledger_Entry_Applies_to_ID</DataField>
+        </Field>
+        <Field Name="Remaining_Amount__Control3035">
+          <DataField>Remaining_Amount__Control3035</DataField>
+        </Field>
+        <Field Name="Remaining_Amount__Control3035Format">
+          <DataField>Remaining_Amount__Control3035Format</DataField>
+        </Field>
+        <Field Name="Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance__Control3036">
+          <DataField>Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance__Control3036</DataField>
+        </Field>
+        <Field Name="Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance__Control3036Format">
+          <DataField>Amount_to_Apply____AmountDiscounted___AmountPmtDiscTolerance___AmountPmtTolerance__Control3036Format</DataField>
+        </Field>
+        <Field Name="AmountDiscounted_Control3037">
+          <DataField>AmountDiscounted_Control3037</DataField>
+        </Field>
+        <Field Name="AmountDiscounted_Control3037Format">
+          <DataField>AmountDiscounted_Control3037Format</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry_Description">
+          <DataField>Vendor_Ledger_Entry_Description</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry__Due_Date_">
+          <DataField>Vendor_Ledger_Entry__Due_Date_</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry__Document_No__">
+          <DataField>Vendor_Ledger_Entry__Document_No__</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry__Document_Type_">
+          <DataField>Vendor_Ledger_Entry__Document_Type_</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry__Currency_Code_">
+          <DataField>Vendor_Ledger_Entry__Currency_Code_</DataField>
+        </Field>
+        <Field Name="AmountPmtTolerance_Control3051">
+          <DataField>AmountPmtTolerance_Control3051</DataField>
+        </Field>
+        <Field Name="AmountPmtTolerance_Control3051Format">
+          <DataField>AmountPmtTolerance_Control3051Format</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscTolerance_Control3052">
+          <DataField>AmountPmtDiscTolerance_Control3052</DataField>
+        </Field>
+        <Field Name="AmountPmtDiscTolerance_Control3052Format">
+          <DataField>AmountPmtDiscTolerance_Control3052Format</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry_Entry_No_">
+          <DataField>Vendor_Ledger_Entry_Entry_No_</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry_Vendor_No_">
+          <DataField>Vendor_Ledger_Entry_Vendor_No_</DataField>
+        </Field>
+        <Field Name="Vendor_Ledger_Entry_Applies_to_ID">
+          <DataField>Vendor_Ledger_Entry_Applies_to_ID</DataField>
+        </Field>
+        <Field Name="ErrorText_Number_">
+          <DataField>ErrorText_Number_</DataField>
+        </Field>
+        <Field Name="ErrorLoop_Number">
+          <DataField>ErrorLoop_Number</DataField>
+        </Field>
+        <Field Name="ErrorText_Number_Caption">
+          <DataField>ErrorText_Number_Caption</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__No__">
+          <DataField>GLAccNetChange__No__</DataField>
+        </Field>
+        <Field Name="GLAccNetChange_Name">
+          <DataField>GLAccNetChange_Name</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Net_Change_in_Jnl__">
+          <DataField>GLAccNetChange__Net_Change_in_Jnl__</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Net_Change_in_Jnl__Format">
+          <DataField>GLAccNetChange__Net_Change_in_Jnl__Format</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Balance_after_Posting_">
+          <DataField>GLAccNetChange__Balance_after_Posting_</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Balance_after_Posting_Format">
+          <DataField>GLAccNetChange__Balance_after_Posting_Format</DataField>
+        </Field>
+        <Field Name="ReconcileLoop_Number">
+          <DataField>ReconcileLoop_Number</DataField>
+        </Field>
+        <Field Name="ReconciliationCaption">
+          <DataField>ReconciliationCaption</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__No__Caption">
+          <DataField>GLAccNetChange__No__Caption</DataField>
+        </Field>
+        <Field Name="GLAccNetChange_NameCaption">
+          <DataField>GLAccNetChange_NameCaption</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Net_Change_in_Jnl__Caption">
+          <DataField>GLAccNetChange__Net_Change_in_Jnl__Caption</DataField>
+        </Field>
+        <Field Name="GLAccNetChange__Balance_after_Posting_Caption">
+          <DataField>GLAccNetChange__Balance_after_Posting_Caption</DataField>
+        </Field>
+        <Field Name="Gen__Journal_Line__ExtDocument_No__">
+          <DataField>Gen__Journal_Line__ExtDocument_No__</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
