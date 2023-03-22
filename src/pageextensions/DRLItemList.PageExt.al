@@ -1,4 +1,4 @@
-pageextension 50113 "ItemListExt" extends "Item List"
+pageextension 50113 "DRL Item List" extends "Item List"
 {
     actions
     {
@@ -16,7 +16,7 @@ pageextension 50113 "ItemListExt" extends "Item List"
 
                 trigger OnAction()
                 var
-                    pickTickStubRep: Report BarCodeItemTrackingReport;
+                    pickTickStubRep: Report "DRL BarCodeItem Tracking";
                     itemCountTotal: Integer;
                     itemCounter: Integer;
 

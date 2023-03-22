@@ -1,4 +1,4 @@
-tableextension 50118 "SalesInvHeader" extends "Sales Invoice Header"
+tableextension 50118 "DRL Sales Invoice Header" extends "Sales Invoice Header"
 {
     fields
     {

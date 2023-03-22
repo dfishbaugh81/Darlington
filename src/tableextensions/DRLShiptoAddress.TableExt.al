@@ -1,4 +1,4 @@
-tableextension 50126 "ShipToAddressEx" extends "Ship-to Address"
+tableextension 50126 "DRL Ship-to Address" extends "Ship-to Address"
 {
     fields
     {
@@ -9,5 +9,5 @@ tableextension 50126 "ShipToAddressEx" extends "Ship-to Address"
             Caption = 'Shipping Instructions';
         }
     }
-    var myInt: Integer;
+
 }

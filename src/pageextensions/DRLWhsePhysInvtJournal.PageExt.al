@@ -1,4 +1,4 @@
-pageextension 50114 "WhrsePhysInvJrnl" extends "Whse. Phys. Invt. Journal"
+pageextension 50114 "DRL Whse. Phys. Invt. Journal" extends "Whse. Phys. Invt. Journal"
 {
     layout
     {

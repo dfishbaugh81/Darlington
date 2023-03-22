@@ -1,4 +1,4 @@
-pageextension 50117 "PageOrderHeaderExt" extends "Purchase Order"
+pageextension 50117 "DRL Purchase Order" extends "Purchase Order"
 {
     layout
     {
@@ -39,7 +39,7 @@ pageextension 50117 "PageOrderHeaderExt" extends "Purchase Order"
                         PurchaseLine.SetRange("Document No.", Rec."No.");
                         PurchaseLine.SetRange(Type, PurchaseLine.Type::Item);
                         if PurchaseLine.FindFirst() then
-                            REPORT.RunModal(REPORT::BarCodeTrackingReport, true, false, PurchaseHeader)
+                            REPORT.RunModal(REPORT::"DRL Barcode Tracking", true, false, PurchaseHeader)
 
                     end;
 

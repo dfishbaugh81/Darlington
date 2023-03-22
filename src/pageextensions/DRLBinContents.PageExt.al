@@ -1,4 +1,4 @@
-pageextension 50146 "BinContentsExt" extends "Bin Contents"
+pageextension 50146 "DRL Bin Contents" extends "Bin Contents"
 {
     actions
     {

@@ -1,4 +1,4 @@
-tableextension 50100 "CustomerEx" extends Customer
+tableextension 50100 "DRL Customer" extends Customer
 {
     fields
     {
@@ -17,17 +17,13 @@ tableextension 50100 "CustomerEx" extends Customer
 
             trigger OnValidate()
             var
-                myInt: Integer;
-                companyInfo: Record Company;
-                vendorRec: Record Vendor;
                 customerRec: Record Customer;
             begin
                 //customerRec.ChangeCompany('CRONUS USA, Inc.');
                 customerRec.ChangeCompany('Test2');
-                customerRec.FindFirst;
-                if customerRec.Darlington_CreatePO then begin
+                customerRec.FindFirst();
+                if customerRec.Darlington_CreatePO then
                     Message('True %1', customerRec."No.");
-                end;
             end;
         }
         field(50102; Darlington_CreatePO; Boolean)
@@ -35,6 +31,11 @@ tableextension 50100 "CustomerEx" extends Customer
             DataClassification = ToBeClassified;
             Caption = 'Generate PO';
         }
+        // Add changes to table fields here
+        field(50104; DRL_ShippingInstructions; Text[200])
+        {
+            DataClassification = ToBeClassified;
+            Caption = 'Shipping Instructions';
+        }
     }
-    var myInt: Integer;
 }

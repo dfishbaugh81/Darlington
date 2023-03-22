@@ -1,4 +1,4 @@
-reportextension 50101 "VendPrePayJournal" extends "Vendor Pre-Payment Journal"
+reportextension 50101 "DRL Vendor Pre-Payment Journal" extends "Vendor Pre-Payment Journal"
 {
     dataset
     {
@@ -11,7 +11,7 @@ reportextension 50101 "VendPrePayJournal" extends "Vendor Pre-Payment Journal"
     }
     requestpage
     {
-    // Add changes to the requestpage here
+        // Add changes to the requestpage here
     }
     rendering
     {

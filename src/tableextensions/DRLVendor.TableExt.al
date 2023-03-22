@@ -1,4 +1,4 @@
-tableextension 50101 "VendorEx" extends Vendor
+tableextension 50101 "DRL Vendor" extends Vendor
 {
     fields
     {
@@ -15,11 +15,11 @@ tableextension 50101 "VendorEx" extends Vendor
             begin
                 customerRec.ChangeCompany('Test2');
                 customerRec.SetFilter("Search Name", '=%1', Darlington_Vendor);
-                if customerRec.FindSet then begin
-                    if customerRec.Darlington_CreatePO then begin
+                if customerRec.FindFirst() then
+                    if customerRec.Darlington_CreatePO then
                         Message('True %1', customerRec."No.");
-                    end;
-                end;
+
+
             end;
         }
         field(50101; Darlington_Company; Code[30])
@@ -35,11 +35,9 @@ tableextension 50101 "VendorEx" extends Vendor
                 //customerRec.ChangeCompany('CRONUS USA, Inc.');
                 customerRec.ChangeCompany('Test2');
                 customerRec.SetFilter("Search Name", '=%1', Rec."Search Name");
-                if customerRec.FindSet then begin
-                    if customerRec.Darlington_CreatePO then begin
+                if customerRec.FindFirst() then
+                    if customerRec.Darlington_CreatePO then
                         Message('True %1', customerRec."No.");
-                    end;
-                end;
             end;
         }
         field(50102; Darlington_CreatePO; Boolean)
@@ -48,5 +46,4 @@ tableextension 50101 "VendorEx" extends Vendor
             Caption = 'Enable Sales Order Creation';
         }
     }
-    var myInt: Integer;
 }

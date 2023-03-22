@@ -1,16 +1,16 @@
-pageextension 50125 "CustomerPageEx" extends "Customer Card"
+pageextension 50126 "DRL Ship-to Address" extends "Ship-to Address"
 {
     layout
     {
         // Add changes to page layout here
-        addafter("Combine Shipments")
+        addafter("Tax Area Code")
         {
             field(ShippingInstructions; rec.ShippingInstructions)
             {
                 ApplicationArea = All;
                 MultiLine = true;
+                ToolTip = 'Ship-to Address';
             }
         }
     }
-    var myInt: Integer;
 }
