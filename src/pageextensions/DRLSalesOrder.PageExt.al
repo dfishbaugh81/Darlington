@@ -56,5 +56,26 @@ pageextension 50115 "DRL Sales Order" extends "Sales Order"
 
         }
     }
+    actions
+    {
+        addafter(Release)
+        {
+            action("Release & Pick")
+            {
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Category5;
+                Image = CreateWarehousePick;
+                ToolTip = 'Release & Pick';
+
+                trigger OnAction()
+                var
+                    DRLCreateWhseShipmentPick: Codeunit "DRL Create Whse. Shipment/Pick";
+                begin
+                    DRLCreateWhseShipmentPick.CreateWhseShipment_Pick(Rec);
+                end;
+            }
+        }
+    }
 }
 
