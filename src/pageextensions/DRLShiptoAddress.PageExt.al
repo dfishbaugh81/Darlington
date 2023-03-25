@@ -1,15 +1,14 @@
-pageextension 50126 "DRL Ship-to Address" extends "Ship-to Address"
+pageextension 50203 "DRL Ship-to Address" extends "Ship-to Address"
 {
     layout
     {
-        // Add changes to page layout here
         addafter("Tax Area Code")
         {
-            field(ShippingInstructions; rec.ShippingInstructions)
+            field("DRL Shipping Instructions"; Rec."DRL Shipping Instructions")
             {
                 ApplicationArea = All;
                 MultiLine = true;
-                ToolTip = 'Ship-to Address';
+                ToolTip = 'Custom Field';
             }
         }
     }

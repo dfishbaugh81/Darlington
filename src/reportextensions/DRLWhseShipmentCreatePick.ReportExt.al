@@ -1,4 +1,4 @@
-reportextension 50102 "DRL Whse.-Shipment-Create Pick" extends "Whse.-Shipment - Create Pick"
+reportextension 50104 "DRL Whse.-Shipment-Create Pick" extends "Whse.-Shipment - Create Pick"
 {
     dataset
     {

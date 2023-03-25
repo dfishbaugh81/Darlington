@@ -1,15 +1,14 @@
-pageextension 50112 "DRL Posted Sales Invoice" extends "Posted Sales Invoice"
+pageextension 50122 "DRL Sales Order List" extends "Sales Order List"
 {
     layout
     {
         // Add changes to page layout here
-        addafter(Closed)
+        addafter("Sell-to Customer Name")
         {
             field(Customer_PO; rec."DRL Customer PO Number")
             {
                 ApplicationArea = All;
                 ToolTip = 'Custom Field';
-                Editable = false;
             }
             field(BakeWeek; rec."DRL Bakeweek")
             {
@@ -18,4 +17,5 @@ pageextension 50112 "DRL Posted Sales Invoice" extends "Posted Sales Invoice"
             }
         }
     }
+
 }

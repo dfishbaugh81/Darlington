@@ -1,18 +1,9 @@
-pageextension 50109 "DRL Purchase Order" extends "Purchase Order"
+pageextension 50110 "DRL Posted Purchase Invoice" extends "Posted Purchase Invoice"
 {
     layout
     {
-        addlast(General)
-        {
-            field("Customer PO"; Rec."DRL Customer PO Number")
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'Customer PO Number';
-                ToolTip = 'Here is where you manually enter the Customer PO Number';
-            }
-        }
         // Add changes to page layout here
-        addafter(PayToOptions)
+        addafter("IRS 1099 Code")
         {
             field(BillToCustomer; rec."DRL Bill-to Customer")
             {
@@ -60,29 +51,17 @@ pageextension 50109 "DRL Purchase Order" extends "Purchase Order"
                 ToolTip = 'Custom Field';
             }
         }
-    }
-    actions
-    {
-        // Add changes to page actions here
-        addlast(Documents)
+        addafter(Corrective)
         {
-            //Relate -> Documents -> Purchase Order
-            action("Sales Order")
+            field(Customer_PO; rec."DRL Customer PO Number")
             {
                 ApplicationArea = All;
                 ToolTip = 'Custom Field';
-                Image = SalesInvoice;
-
-                trigger OnAction()
-                var
-                    SalesHeader: Record "Sales Header";
-                    SalesOrderPage: Page "Sales Order";
-                begin
-                    SalesHeader.SetRange("No.", rec."Payment Reference");
-                    SalesOrderPage.SetRecord(SalesHeader);
-                    SalesOrderPage.Run();
-
-                end;
+            }
+            field(BakeWeek; rec."DRL BakeWeek")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Custom Field';
             }
         }
     }

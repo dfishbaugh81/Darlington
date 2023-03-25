@@ -1,11 +1,11 @@
-tableextension 50103 "DRL Warehouse Setup" extends "Warehouse Setup"
+tableextension 50105 "DRL Warehouse Setup" extends "Warehouse Setup"
 {
     fields
     {
-        field(50000; "DRL Create Pick Dialog"; Boolean)
+        field(50100; "DRL Create Pick Dialog"; Boolean)
         {
-            DataClassification = ToBeClassified;
             Caption = 'Create Pick Dialog';
+            DataClassification = ToBeClassified;
         }
     }
 }

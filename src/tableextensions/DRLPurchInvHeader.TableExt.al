@@ -1,4 +1,4 @@
-tableextension 50205 "DRL Sales Invoice Header" extends "Sales Invoice Header"
+tableextension 50203 "DRL Purch. Inv. Header" extends "Purch. Inv. Header"
 {
     fields
     {
@@ -52,9 +52,9 @@ tableextension 50205 "DRL Sales Invoice Header" extends "Sales Invoice Header"
             Caption = 'Customer_PO_Number';
             ExtendedDatatype = URL;
         }
-        field(50210; "DRL Bakeweek"; Integer)
+        field(50210; "DRL BakeWeek"; Integer)
         {
-            Caption = 'Bake week';
+            Caption = 'Bake Week';
         }
     }
 }

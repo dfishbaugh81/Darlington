@@ -1,24 +1,24 @@
-pageextension 50101 "DRL Vendor Card" extends "Vendor Card"
+pageextension 50105 "DRL Vendor Card" extends "Vendor Card"
 {
     layout
     {
-        // Add changes to page layout here
         addafter("Disable Search by Name")
         {
-            field(Darlington_Vendor; rec.Darlington_Vendor)
+            field("DRL Vendor"; Rec."DRL Vendor")
             {
                 ApplicationArea = All;
-                ToolTip = 'Darlington Vendor';
+                ToolTip = 'Custom Field';
             }
-            field(Darlington_Company; rec.Darlington_Company)
+            field("DRL Company"; Rec."DRL Company")
             {
                 ApplicationArea = All;
-                ToolTip = 'Darlington Company';
+                ToolTip = 'Custom Field';
             }
-            field(Darlington_CreatePO; rec.Darlington_CreatePO)
+
+            field("DRL Create SO"; Rec."DRL Create SO")
             {
                 ApplicationArea = All;
-                ToolTip = 'Darlington CreatePO';
+                ToolTip = 'Custom Field';
             }
         }
     }

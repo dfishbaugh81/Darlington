@@ -1,17 +1,16 @@
-pageextension 50112 "DRL Posted Sales Invoice" extends "Posted Sales Invoice"
+pageextension 50124 "DRL Posted Purchase Invoices" extends "Posted Purchase Invoices"
 {
     layout
     {
         // Add changes to page layout here
-        addafter(Closed)
+        addafter("Buy-from Vendor Name")
         {
             field(Customer_PO; rec."DRL Customer PO Number")
             {
                 ApplicationArea = All;
                 ToolTip = 'Custom Field';
-                Editable = false;
             }
-            field(BakeWeek; rec."DRL Bakeweek")
+            field(BakeWeek; rec."DRL BakeWeek")
             {
                 ApplicationArea = All;
                 ToolTip = 'Custom Field';

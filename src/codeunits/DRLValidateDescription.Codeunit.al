@@ -1,11 +1,10 @@
-codeunit 50105 "DRL Validate Description"
+codeunit 50205 "DRL Validate Description"
 {
     trigger OnRun()
     begin
         ValidateDescription();
 
     end;
-
 
     local procedure ValidateDescription()
     var
@@ -15,16 +14,11 @@ codeunit 50105 "DRL Validate Description"
         ProductionBOMLine.SetRange(Description, '');
         if ProductionBOMLine.FindSet() then
             repeat
-
                 if itemDescription.Get(ProductionBOMLine."No.") then begin
                     ProductionBOMLine.Description := itemDescription.Description;
                     ProductionBOMLine.Modify();
                 end;
-
-
-
             until ProductionBOMLine.Next() = 0;
-
 
     end;
 

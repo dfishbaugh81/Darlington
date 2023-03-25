@@ -1,4 +1,4 @@
-codeunit 50103 "DRL Lot Size"
+codeunit 50202 "DRL LotSize"
 {
 
 
@@ -6,114 +6,86 @@ codeunit 50103 "DRL Lot Size"
     var
         ItemRec: Record Item;
     begin
+
         repeat
+
+
+
             if ItemRec."Production BOM No." <> '' then begin
                 ItemRec.Validate("DRL Moisture Gain", ItemRec."DRL Moisture Gain");
                 ItemRec.Modify();
+
             end;
+
+
         until ItemRec.Next() = 0;
+
+
     end;
 
     procedure setMlOnBom(RawItem: Record item)
     var
-        prodBOMItem: Record "Production BOM Line";
+        ProductionBOMLine: Record "Production BOM Line";
     begin
 
-        prodBOMItem.SetFilter("No.", '=%1', RawItem."No.");
+        ProductionBOMLine.SetRange("No.", RawItem."No.");
 
-        if prodBOMItem.FindSet() then
+        if ProductionBOMLine.FindSet() then
             repeat
-                prodBOMItem."DRL Moisture Loss" := RawItem."DRL Moisture Loss";
-                prodBOMItem."lbs. After ML" := prodBOMItem."Quantity per" - (prodBOMItem."Quantity per" * (prodBOMItem."DRL Moisture Loss" / 100));
-                prodBOMItem.Modify();
-                prodBOMItem.Validate("DRL Moisture Loss", RawItem."DRL Moisture Loss");
-                prodBOMItem.Validate("lbs. After ML", prodBOMItem."lbs. After ML");
-                calculateLotSize(prodBOMItem);
-            until prodBOMItem.Next() = 0;
-
-
-
-
-
-
+                ProductionBOMLine."DRL Moisture Loss" := RawItem."DRL Moisture Loss";
+                ProductionBOMLine."DRL Lbs. After ML" := ProductionBOMLine."Quantity per" - (ProductionBOMLine."Quantity per" * (ProductionBOMLine."DRL Moisture Loss" / 100));
+                ProductionBOMLine.Modify();
+                ProductionBOMLine.Validate("DRL Moisture Loss", RawItem."DRL Moisture Loss");
+                ProductionBOMLine.Validate("DRL Lbs. After ML", ProductionBOMLine."DRL Lbs. After ML");
+                calculateLotSize(ProductionBOMLine);
+            until ProductionBOMLine.Next() = 0;
     end;
 
 
-    /*
-
-    //calculate batch weight
-    procedure CalculateBatchWeight(var sumLbsAfterML: Decimal; finishedGoodMG: Record Item): Decimal
+    procedure calculateLotSize(pProductionBOMLine: Record "Production BOM Line")
     var
-        BatchWeight_Z: Decimal;
-    begin
-
-
-        BatchWeight_Z := sumLbsAfterML + (sumLbsAfterML * finishedGoodMG."DRL Moisture Gain");
-        exit(BatchWeight_Z);
-
-
-
-    end;
-
-    //calculate yield
-    local procedure CalculateYield(var BatchWeight_z: Decimal; finishedGoodW: Record Item)
-    var
-        yield: Decimal;
-    begin
-
-        yield := BatchWeight_z / finishedGoodW."DRL Weight After ML";
-    end;
-    */
-
-
-    procedure calculateLotSize(productionBOMLine: Record "Production BOM Line")
-    var
-        FinishedGood: record Item;
-        itemunitOfMeassure: Record "Item Unit of Measure";
+        FGItem: record Item;
+        ItemUnitOfMeasure: Record "Item Unit of Measure";
         batchWeight: decimal;
         TotalSumLbsAfterML: Decimal;
-
-
         Yield: Decimal;
-
     begin
 
-        productionBOMLine.SetFilter("Production BOM No.", '=%1', productionBOMLine."Production BOM No.");
+        pProductionBOMLine.SetRange("Production BOM No.", pProductionBOMLine."Production BOM No.");
 
-        TotalSumLbsAfterML := 0;
 
-        if productionBOMLine.FindSet() then begin
+        if pProductionBOMLine.FindSet() then begin
 
+            TotalSumLbsAfterML := 0;
 
             repeat
 
-                TotalSumLbsAfterML := productionBOMLine."lbs. After ML" + TotalSumLbsAfterML;
+                TotalSumLbsAfterML := pProductionBOMLine."DRL Lbs. After ML" + TotalSumLbsAfterML;
 
-            until productionBOMLine.Next() = 0;
+            until pProductionBOMLine.Next() = 0;
 
-            FinishedGood.SetFilter("Production BOM No.", '=%1', productionBOMLine."Production BOM No.");
+            FGItem.SetRange("Production BOM No.", pProductionBOMLine."Production BOM No.");
 
-            if FinishedGood.FindSet() then
+            if FGItem.FindSet() then
                 repeat
 
-                    FinishedGood."DRL Weight After ML" := TotalSumLbsAfterML;
-                    FinishedGood.Modify();
+                    FGItem."DRL ML Weight" := TotalSumLbsAfterML;
+                    FGItem.Modify();
 
-                    batchWeight := TotalSumLbsAfterML + (TotalSumLbsAfterML * (FinishedGood."DRL Moisture Gain" / 100));
+                    batchWeight := TotalSumLbsAfterML + (TotalSumLbsAfterML * (FGItem."DRL Moisture Gain" / 100));
 
 
-                    if itemunitOfMeassure.Get(FinishedGood."No.", FinishedGood."Purch. Unit of Measure") then begin
+                    if ItemUnitOfMeasure.Get(FGItem."No.", FGItem."Purch. Unit of Measure") then begin
 
-                        if itemunitOfMeassure.Weight <> 0 then
-                            Yield := batchWeight / itemunitOfMeassure.Weight;
+                        if ItemUnitOfMeasure.Weight <> 0 then
+                            Yield := batchWeight / ItemUnitOfMeasure.Weight;
 
-                        FinishedGood."Lot Size" := Yield - ((FinishedGood."DRL Planned Scrap" / 100) * Yield);
+                        FGItem."Lot Size" := Yield - ((FGItem."DRL Planned Scrap" / 100) * Yield);
 
-                        FinishedGood.Modify();
+                        FGItem.Modify();
                     end;
 
-
-                until FinishedGood.Next() = 0;
+                until FGItem.Next() = 0;
 
         end;
     end;

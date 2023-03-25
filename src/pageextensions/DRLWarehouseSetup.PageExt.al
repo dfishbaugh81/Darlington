@@ -1,20 +1,17 @@
-pageextension 50105 "DRL Warehouse Setup" extends "Warehouse Setup"
+pageextension 50108 "DRL Warehouse Setup" extends "Warehouse Setup"
 {
     layout
     {
         addafter(Numbering)
         {
-
-            group("Release & Pick")
+            group(ReleasePick)
             {
                 Caption = 'Release & Pick';
-
-                field(CreatePickDialog; Rec."DRL Create Pick Dialog")
+                field("DRL Create Pick Dialog"; Rec."DRL Create Pick Dialog")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Create Pick Dialog';
                 }
-
             }
         }
     }

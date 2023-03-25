@@ -1,22 +1,25 @@
-tableextension 50104 "DRL Item" extends Item
+tableextension 50211 "DRL Item" extends Item
 {
     fields
     {
-        // Add changes to table fields here
-        field(50101; "DRL Planned Scrap"; Decimal)
+        field(50201; "DRL Planned Scrap"; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Planned Scrap %';
 
             trigger OnValidate()
             var
+
+
             begin
-                CalculateLotSize();
+
+                DRLCalculateLotSize();
+
             end;
 
         }
 
-        field(50102; "DRL Moisture Gain"; Decimal)
+        field(50202; "DRL Moisture Gain"; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Moisture Gain %';
@@ -26,11 +29,14 @@ tableextension 50104 "DRL Item" extends Item
 
             begin
 
-                CalculateLotSize();
+                DRLCalculateLotSize();
+
+
+
             end;
         }
 
-        field(50103; "DRL Moisture Loss"; Decimal)
+        field(50203; "DRL Moisture Loss"; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Moisture Loss %';
@@ -38,7 +44,7 @@ tableextension 50104 "DRL Item" extends Item
 
             trigger OnValidate()
             var
-                lotSize: Codeunit "DRL Lot Size";
+                lotSize: Codeunit "DRL LotSize";
             begin
 
                 lotSize.setMlOnBom(Rec);
@@ -48,7 +54,7 @@ tableextension 50104 "DRL Item" extends Item
 
         }
 
-        field(50104; "DRL Weight After ML"; Decimal)
+        field(50204; "DRL ML Weight"; Decimal)
         {
             DataClassification = ToBeClassified;
             Caption = 'Weight After ML';
@@ -56,47 +62,43 @@ tableextension 50104 "DRL Item" extends Item
 
         }
     }
-
-
-
-
     local procedure calculateBatchWeight(): Decimal
     var
         BatchWeight_Z: Decimal;
     begin
 
 
-        BatchWeight_Z := rec."DRL Weight After ML" + (rec."DRL Weight After ML" * (rec."DRL Moisture Gain" / 100));
+        BatchWeight_Z := rec."DRL ML Weight" + (rec."DRL ML Weight" * (rec."DRL Moisture Gain" / 100));
         exit(BatchWeight_Z);
 
     end;
 
     local procedure calculateYield(): Decimal
     var
-        ItemUnitOfMeasure: Record "Item Unit of Measure";
+
+        ItemUnitOfMeasureWeight: Record "Item Unit of Measure";
+
         Yield: Decimal;
     begin
+        if ItemUnitOfMeasureWeight.Get(Rec."No.", Rec."Purch. Unit of Measure") then begin
 
-
-        ItemUnitOfMeasure.SetFilter("Item No.", '=%1', rec."No.");
-
-
-        if ItemUnitOfMeasure.Get(Rec."No.", Rec."Purch. Unit of Measure") then begin
-
-            Yield := calculateBatchWeight() / ItemUnitOfMeasure.Weight;
+            Yield := calculateBatchWeight() / ItemUnitOfMeasureWeight.Weight;
             exit(Yield);
+
         end;
-        exit(0);
+
     end;
 
 
 
 
 
-    procedure CalculateLotSize()
+    procedure DRLCalculateLotSize()
     var
     begin
 
         rec."Lot Size" := calculateYield() - ((rec."DRL Planned Scrap" / 100) * calculateYield());
+        rec.Modify();
+
     end;
 }

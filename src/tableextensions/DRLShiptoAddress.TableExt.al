@@ -1,13 +1,11 @@
-tableextension 50126 "DRL Ship-to Address" extends "Ship-to Address"
+tableextension 50209 "DRL Ship-to Address" extends "Ship-to Address"
 {
     fields
     {
-        // Add changes to table fields here
-        field(50105; ShippingInstructions; Text[200])
+        field(50200; "DRL Shipping Instructions"; Text[1024])
         {
-            DataClassification = ToBeClassified;
             Caption = 'Shipping Instructions';
+            DataClassification = ToBeClassified;
         }
     }
-
 }
