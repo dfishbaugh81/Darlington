@@ -166,6 +166,7 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
         PurchaseHeader.Validate("Payment Reference", rec."No.");
         PurchaseHeader.validate("DRL Customer PO Number", rec."DRL Customer PO Number");
         PurchaseHeader.Validate("DRL Bakeweek", rec."DRL Bakeweek");
+        PurchaseHeader.Validate(BakeWeek, Rec.BakeWeek);
         PurchaseHeader.Validate("DRL Bill-to Customer", rec."Bill-to Customer No.");
         PurchaseHeader.Validate("DRL Bill-to Name", rec."Bill-to Name");
         PurchaseHeader.Validate("DRL Bill-to Address", rec."Bill-to Address");

@@ -2,6 +2,20 @@ pageextension 50109 "DRL Purchase Order" extends "Purchase Order"
 {
     layout
     {
+        addafter(BakeWeek)
+        {
+            field("DRL Bakeweek"; Rec."DRL Bakeweek")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Bake Week';
+            }
+
+        }
+
+        modify(BakeWeek)
+        {
+            Visible = false;
+        }
         addlast(General)
         {
             field("Customer PO"; Rec."DRL Customer PO Number")
