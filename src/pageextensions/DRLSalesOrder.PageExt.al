@@ -108,7 +108,7 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
                     PurchaseOrderPage: Page "Purchase Order";
                 begin
                     PurchaseHeader.SetRange("No.", rec."Your Reference");
-                    PurchaseOrderPage.SetRecord(PurchaseHeader);
+                    PurchaseOrderPage.SetTableView(PurchaseHeader);
                     PurchaseOrderPage.Run();
                 end;
             }
@@ -174,7 +174,7 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
         PurchaseHeader.SetShipToAddress(rec."Ship-to Name", rec."Ship-to Name 2", rec."Ship-to Address", rec."Ship-to Address 2", rec."Ship-to City", rec."Ship-to Post Code", rec."Ship-to County", rec."Ship-to Country/Region Code");
         if PurchaseHeader.Insert() then begin
             CreatePurchaseLines(PurchaseHeader);
-            PurchaseOrderPage.SetRecord(PurchaseHeader);
+            PurchaseOrderPage.SetTableView(PurchaseHeader);
             PurchaseOrderPage.Run();
         end;
     end;

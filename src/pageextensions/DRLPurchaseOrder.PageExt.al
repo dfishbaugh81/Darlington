@@ -79,7 +79,7 @@ pageextension 50109 "DRL Purchase Order" extends "Purchase Order"
                     SalesOrderPage: Page "Sales Order";
                 begin
                     SalesHeader.SetRange("No.", rec."Payment Reference");
-                    SalesOrderPage.SetRecord(SalesHeader);
+                    SalesOrderPage.SetTableView(SalesHeader);
                     SalesOrderPage.Run();
 
                 end;
