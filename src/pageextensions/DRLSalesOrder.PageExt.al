@@ -148,7 +148,7 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
     //Procedure creates PO Header
     local procedure PurchaseHeaderHeader()
     var
-        PurchaseHeader: Record "Purchase Header";
+        PurchaseHeader, PurchaseHeader2 : Record "Purchase Header";
         PurchasesPayablesSetup: Record "Purchases & Payables Setup";
         DropShipLocation: Record Location;
         NoSeriesManagement: Codeunit NoSeriesManagement;
@@ -187,7 +187,9 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
         PurchaseHeader.SetShipToAddress(rec."Ship-to Name", rec."Ship-to Name 2", rec."Ship-to Address", rec."Ship-to Address 2", rec."Ship-to City", rec."Ship-to Post Code", rec."Ship-to County", rec."Ship-to Country/Region Code");
         if PurchaseHeader.Insert() then begin
             CreatePurchaseLines(PurchaseHeader);
-            PurchaseOrderPage.SetTableView(PurchaseHeader);
+            PurchaseHeader2.SetRange("Document Type", PurchaseHeader."Document Type");
+            PurchaseHeader2.SetRange("No.", PurchaseHeader."No.");
+            PurchaseOrderPage.SetTableView(PurchaseHeader2);
             PurchaseOrderPage.Run();
         end;
     end;
