@@ -2,7 +2,7 @@
   "id": "136e5fd7-a051-4266-afdc-8e2a6a8bf8e6",
   "name": "Darlington Main Extension",
   "publisher": "Impact Networking",
-  "version": "1.0.10.1",
+  "version": "1.0.10.2",
   "brief": "",
   "description": "consolidated extension of Darlington customizations",
   "privacyStatement": "",
@@ -10,7 +10,9 @@
   "help": "",
   "url": "",
   "logo": "./logo/ImpactLogo.jfif",
-  "dependencies": [],
+  "dependencies": [
+    {"id": "dd5ba14c-475a-4143-9801-db99f5e6be73", "name": "Darlington CustPrice Ext", "publisher": "Impact Networking", "version": "1.0.0.0"}
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "21.0.0.0",

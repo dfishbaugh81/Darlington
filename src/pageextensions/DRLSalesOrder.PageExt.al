@@ -2,6 +2,18 @@ pageextension 50104 "DRL Sales Order" extends "Sales Order"
 {
     layout
     {
+        addafter(BakeWeek)
+        {
+            field("DRL Bakeweek"; Rec."DRL Bakeweek")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Bake week';
+            }
+        }
+        modify(BakeWeek)
+        {
+            Visible = false;
+        }
         addlast(General)
         {
             field("Customer PO"; Rec."DRL Customer PO Number")

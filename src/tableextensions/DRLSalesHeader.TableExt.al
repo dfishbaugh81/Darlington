@@ -55,6 +55,18 @@ tableextension 50204 "DRL Sales Header" extends "Sales Header"
         field(50210; "DRL Bakeweek"; Integer)
         {
             Caption = 'Bake week';
+            trigger OnValidate()
+            begin
+                BakeWeek := "DRL Bakeweek";
+            end;
+        }
+
+        modify(BakeWeek)
+        {
+            trigger OnAfterValidate()
+            begin
+                "DRL Bakeweek" := BakeWeek;
+            end;
         }
     }
 }
